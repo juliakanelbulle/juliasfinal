@@ -1,4 +1,4 @@
-namespace juliasfinal.Utils
+namespace juliasfinal.Verktyg
 {
 	static class Constants
 	{

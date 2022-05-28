@@ -2,10 +2,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace juliasfinal.GameObjects
 {
-	interface IGameObject
+	interface SpelObjekt
 	{
 		int Size { get; }
 
 		void Draw(SpriteBatch spriteBatch);
+		//här ritas min sprite ut!
 	}
 }

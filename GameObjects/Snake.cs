@@ -3,16 +3,15 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using juliasfinal.Utils;
+using juliasfinal.Verktyg;
 
 namespace juliasfinal.GameObjects
 {
-	class Snake : IGameObject
+	class Snake : SpelObjekt
 	{
-		const int INTERVAL_MILLISECONDS = 96;
-
 		private int lastUpdate;
-
+		const int INTERVAL_MILLISECONDS = 96;
+		
 		public List<Rectangle> Tail { get; }
 
 		private (int X, int Y) position;
@@ -23,7 +22,7 @@ namespace juliasfinal.GameObjects
 		public int Size => Constants.RECT_SIZE;
 
 		public bool IsAlive { get; set; } = true;
-
+	
 		public Texture2D Texture { get; set; }
 
 		public Snake() => Tail = new List<Rectangle>
@@ -37,14 +36,14 @@ namespace juliasfinal.GameObjects
 			Texture.SetData(new[] { Color.White });
 		}
 
-		private bool CanMove(Directions direction) => direction switch
+		private bool CanMove(Styra direction) => direction switch
 		{
-			Directions.Up => Tail.Count == 1 || (Tail.Count > 1 && this.direction.Y != 1),
-			Directions.Down => Tail.Count == 1 || (Tail.Count > 1 && this.direction.Y != -1),
-			Directions.Left => Tail.Count == 1 || (Tail.Count > 1 && this.direction.X != 1),
-			Directions.Right => Tail.Count == 1 || (Tail.Count > 1 && this.direction.X != -1),
+			Styra.Up => Tail.Count == 1 || (Tail.Count > 1 && this.direction.Y != 1),
+			Styra.Down => Tail.Count == 1 || (Tail.Count > 1 && this.direction.Y != -1),
+			Styra.Left => Tail.Count == 1 || (Tail.Count > 1 && this.direction.X != 1),
+			Styra.Right => Tail.Count == 1 || (Tail.Count > 1 && this.direction.X != -1),
 			_ => false
-		};
+		}; //här anger jag hur min svans ska röra på sig
 
 		public void ResetSnake()
 		{
@@ -65,12 +64,12 @@ namespace juliasfinal.GameObjects
 			}
 
 			var key = state.GetPressedKeys().First();
-			if (!KeyboardExtension.PreviouslyKeyUp(key))
+			if (!Tangentbord.PreviouslyKeyUp(key))
 				return;
 
 			var (x, y) = GetMoveDirection(key);
 
-			// Trying to move to X and Y directions at the same time
+			// Försöker att flytta X till Y åt samma håll sammtidigt
 			if ((x, y) == (0, 0) || (x, y) == (1, 1) || (x, y) == (-1, -1))
 			{
 				return;
@@ -81,14 +80,14 @@ namespace juliasfinal.GameObjects
 
 		private (int X, int Y) GetMoveDirection(Keys key) => key switch
 		{
-			Keys.Up => CanMove(Directions.Up) ? (0, -1) : direction,
-			Keys.Down => CanMove(Directions.Down) ? (0, 1) : direction,
-			Keys.Left => CanMove(Directions.Left) ? (-1, 0) : direction,
-			Keys.Right => CanMove(Directions.Right) ? (1, 0) : direction,
+			Keys.Up => CanMove(Styra.Up) ? (0, -1) : direction,
+			Keys.Down => CanMove(Styra.Down) ? (0, 1) : direction,
+			Keys.Left => CanMove(Styra.Left) ? (-1, 0) : direction,
+			Keys.Right => CanMove(Styra.Right) ? (1, 0) : direction,
 			_ => direction
 		};
 
-		public bool CollisionWithApple(Apple apple) => position == apple.Position;
+		public bool CollisionWithKub(Kub kub) => position == kub.Position;
 
 		public void ExtendTail()
 		{
@@ -143,7 +142,7 @@ namespace juliasfinal.GameObjects
 					spriteBatch.Draw(Texture, new Rectangle(part.X - 1, part.Y - 1, Size + 2, Size + 2), Color.Black);
 				}
 
-				spriteBatch.Draw(Texture, part, IsAlive ? Color.ForestGreen : Color.DarkRed);
+				spriteBatch.Draw(Texture, part, IsAlive ? Color.Pink : Color.LightCoral);
 			}
 		}
 	}

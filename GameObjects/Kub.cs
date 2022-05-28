@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using juliasfinal.Utils;
+using juliasfinal.Verktyg;
 
 namespace juliasfinal.GameObjects
 {
-	class Apple : IGameObject
+	class Kub : SpelObjekt
 	{
 		private readonly Random random;
 		public (int X, int Y) Position { get; private set; }
@@ -16,7 +16,7 @@ namespace juliasfinal.GameObjects
 
 		public Texture2D Texture { get; set; }
 
-		public Apple() => random = new Random();
+		public Kub() => random = new Random();
 
 		public void SetupTexture(GraphicsDevice graphics)
 		{
@@ -25,7 +25,7 @@ namespace juliasfinal.GameObjects
 		}
 
 		public void ResetToRandomPosition(List<Rectangle> tail)
-		{
+		{//Här ser jag till att kuben hamnar på random ställen inom spelrutan  
 			var rectangles = new List<(int posX, int posY)>();
 
 			for (var areaX = 0; areaX < Constants.WINDOW_SIZE; ++areaX)
@@ -49,7 +49,7 @@ namespace juliasfinal.GameObjects
 
 		public void Draw(SpriteBatch spriteBatch)
 		{
-			spriteBatch.Draw(Texture, new Rectangle(Position.X, Position.Y, Size, Size), Color.Red);
+			spriteBatch.Draw(Texture, new Rectangle(Position.X, Position.Y, Size, Size), Color.LightCoral);
 		}
 	}
 }

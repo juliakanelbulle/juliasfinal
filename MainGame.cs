@@ -3,8 +3,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using juliasfinal.GameObjects;
-using juliasfinal.Utils;
-using juliasfinal.Utils.Saves;
+using juliasfinal.Verktyg;
+using juliasfinal.Verktyg.Saves;
 
 namespace juliasfinal
 {
@@ -14,7 +14,7 @@ namespace juliasfinal
 		private SpriteBatch spriteBatch;
 
 		private readonly Snake snake;
-		private readonly Apple apple;
+		private readonly Kub kub;
 
 		private SpriteFont scoreFont;
 		private SpriteFont gameOverFont;
@@ -23,7 +23,7 @@ namespace juliasfinal
 		private bool started;
 		private int score;
 		private bool drawGrid;
-
+		//Deklarerat 
 		public MainGame()
 		{
 			graphics = new GraphicsDeviceManager(this);
@@ -35,13 +35,13 @@ namespace juliasfinal
 			IsMouseVisible = true;
 
 			snake = new Snake();
-			apple = new Apple();
+			kub = new Kub();
 		}
 
 		protected override void Initialize()
 		{
 			snake.SetStartingPosition();
-			apple.ResetToRandomPosition(snake.Tail);
+			kub.ResetToRandomPosition(snake.Tail);
 
 			base.Initialize();
 		}
@@ -50,13 +50,13 @@ namespace juliasfinal
 		{
 			spriteBatch = new SpriteBatch(GraphicsDevice);
 
-			hiscore = SaveFile.Load();
+			hiscore = SparatResultat.Load();
 
 			scoreFont = Content.Load<SpriteFont>("ScoreFont");
 			gameOverFont = Content.Load<SpriteFont>("GameOverFont");
 
 			snake.SetupTexture(GraphicsDevice);
-			apple.SetupTexture(GraphicsDevice);
+			kub.SetupTexture(GraphicsDevice);
 		}
 
 		protected override void OnExiting(object sender, EventArgs args)
@@ -64,7 +64,7 @@ namespace juliasfinal
 			if (score > hiscore.PersonalBest)
 			{
 				hiscore.PersonalBest = score;
-				SaveFile.Save(hiscore);
+				SparatResultat.Save(hiscore);
 			}
 
 			base.OnExiting(sender, args);
@@ -72,27 +72,27 @@ namespace juliasfinal
 
 		protected override void Update(GameTime gameTime)
 		{
-			var state = KeyboardExtension.GetState();
+			var state = Tangentbord.GetState();
 
-			if (KeyboardExtension.IsKeyPress(Keys.Escape))
+			if (Tangentbord.IsKeyPress(Keys.Escape))
 			{
 				Exit();
 				return;
 			}
 
-			if (!started && KeyboardExtension.IsKeyPress(Keys.Enter))
+			if (!started && Tangentbord.IsKeyPress(Keys.Space))
 			{
 				started = true;
 			}
 
-			if (KeyboardExtension.IsKeyPress(Keys.G))
+			if (Tangentbord.IsKeyPress(Keys.G))
 			{
 				drawGrid = !drawGrid;
 			}
 
 			snake.Update(gameTime);
 
-			if (!snake.IsAlive && KeyboardExtension.IsKeyPress(Keys.Enter))
+			if (!snake.IsAlive && Tangentbord.IsKeyPress(Keys.Space))
 			{
 				snake.ResetSnake();
 				score = 0;
@@ -100,11 +100,10 @@ namespace juliasfinal
 
 			snake.HandleUserInput(state);
 
-			if (snake.CollisionWithApple(apple))
+			if (snake.CollisionWithKub(kub))
 			{
-				apple.ResetToRandomPosition(snake.Tail);
+				kub.ResetToRandomPosition(snake.Tail);
 				snake.ExtendTail();
-
 				score++;
 			}
 
@@ -120,14 +119,14 @@ namespace juliasfinal
 			if (started)
 			{
 				snake.Draw(spriteBatch);
-				apple.Draw(spriteBatch);
+				kub.Draw(spriteBatch);
 
-				spriteBatch.DrawString(scoreFont, $"Score: {score}", new Vector2(10, 10), Color.White);
-				spriteBatch.DrawString(scoreFont, $"Personal Best: {hiscore.PersonalBest}", new Vector2(10, 26), Color.White);
+				spriteBatch.DrawString(scoreFont, $"Current Score: {score}", new Vector2(10, 10), Color.Pink);
+				spriteBatch.DrawString(scoreFont, $"Highscore: {hiscore.PersonalBest}", new Vector2(10, 26), Color.Pink);
 
 				if (!snake.IsAlive)
 				{
-					spriteBatch.DrawCenteredString(gameOverFont, $" ---> Game over! <---\nPress Enter to restart.", Color.White);
+					spriteBatch.DrawCenteredString(gameOverFont, $"Game over\nPress Speace to restart.", Color.Pink);
 				}
 				else
 				{
@@ -135,23 +134,23 @@ namespace juliasfinal
 					{
 						spriteBatch.DrawGrid();
 					}
-				}
+				} 
 			}
 			else
 			{
-				spriteBatch.DrawCenteredStringWithOffset(gameOverFont, "Klicka pa enter for att starta.", Color.Green, (0, -100));
+				spriteBatch.DrawCenteredStringWithOffset(gameOverFont, "Klicka pa mellanslag for att starta.", Color.Pink, (0, -100));
 				spriteBatch.DrawCenteredStringWithOffset(scoreFont, string.Join("\n", new[]
 				{
-					"           Keybindings",
+					"           GOOD LUCK",
 					"-------------------------------------",
-					">  T           : Toggle Snake Grid",
-					">  G           : Toggle Area Grid",
-					">  Arrow Up    : Move Up",
-					">  Arrow Down  : Move Down",
-					">  Arrow Left  : Move Left",
-					">  Arrow Right : Move Right",
-					">  Enter       : Start The Game"
-				}), Color.White, (0, 70));
+					"",
+					"",
+					"",
+					"",
+					"",
+					"", //här blev det lite knasigt men min dator får spel annars
+					""
+				}), Color.Pink, (0, 70));
 			}
 
 			spriteBatch.End();

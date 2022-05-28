@@ -2,16 +2,16 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace juliasfinal.Utils
+namespace juliasfinal.Verktyg
 {
-	static class SpriteBatchExtension
+	static class Sprite
 	{
 		private static Texture2D texture;
 
 		private static Vector2 GetWindowCenter(this SpriteFont font, string text, (int x, int y) textOffset)
 		{
 			var strSize = font.MeasureString(text);
-
+			//bestämmer vart startrutan ska hamna på skärmen
 			return new Vector2(
 				Constants.WINDOW_SIZE / 2 - strSize.X / 2 + textOffset.x,
 				Constants.WINDOW_SIZE / 2 - strSize.Y / 2 + textOffset.y

@@ -2,9 +2,10 @@ using System;
 using System.IO;
 using System.Text.Json;
 
-namespace juliasfinal.Utils.Saves
+//Detta är min klass där highscore och nuvarande poäng personer har som spelar programeras
+namespace juliasfinal.Verktyg.Saves
 {
-	class SaveFile
+	class SparatResultat
 	{
 		public static Hiscore Load()
 		{

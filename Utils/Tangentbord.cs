@@ -1,12 +1,12 @@
 using Microsoft.Xna.Framework.Input;
 
-namespace juliasfinal.Utils
+namespace juliasfinal.Verktyg
 {
-	static class KeyboardExtension
+	static class Tangentbord
 	{
-		static KeyboardState previousState;
 		static KeyboardState currentState;
 
+		static KeyboardState previousState;
 		public static KeyboardState GetState()
 		{
 			previousState = currentState;
@@ -16,7 +16,6 @@ namespace juliasfinal.Utils
 		}
 
 		public static bool PreviouslyKeyUp(Keys key) => previousState.IsKeyUp(key);
-
 		public static bool IsKeyPress(Keys key) => currentState.IsKeyDown(key) && previousState.IsKeyUp(key);
 	}
 }
