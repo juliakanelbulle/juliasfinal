@@ -139,7 +139,7 @@ namespace juliasfinal
 			}
 			else
 			{
-				spriteBatch.DrawCenteredStringWithOffset(gameOverFont, "Press Enter to start the game.", Color.Green, (0, -100));
+				spriteBatch.DrawCenteredStringWithOffset(gameOverFont, "Klicka pa enter for att starta.", Color.Green, (0, -100));
 				spriteBatch.DrawCenteredStringWithOffset(scoreFont, string.Join("\n", new[]
 				{
 					"           Keybindings",
