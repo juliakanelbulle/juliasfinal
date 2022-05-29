@@ -25,7 +25,7 @@ namespace juliasfinal.GameObjects
 		}
 
 		public void ResetToRandomPosition(List<Rectangle> tail)
-		{//Här ser jag till att kuben hamnar på random ställen inom spelrutan  
+		{//Här nedan ska jag se till att kuben hamnar på random ställen på spelskärmen  
 			var rectangles = new List<(int posX, int posY)>();
 
 			for (var areaX = 0; areaX < Constants.WINDOW_SIZE; ++areaX)
@@ -45,11 +45,11 @@ namespace juliasfinal.GameObjects
 			}
 
 			Position = rectangles[random.Next(rectangles.Count)];
-		}
+		}    
 
 		public void Draw(SpriteBatch spriteBatch)
 		{
 			spriteBatch.Draw(Texture, new Rectangle(Position.X, Position.Y, Size, Size), Color.LightCoral);
-		}
+		}//ritar ut
 	}
 }

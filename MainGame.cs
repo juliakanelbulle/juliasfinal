@@ -5,12 +5,14 @@ using Microsoft.Xna.Framework.Input;
 using juliasfinal.GameObjects;
 using juliasfinal.Verktyg;
 using juliasfinal.Verktyg.Saves;
+using Microsoft.Xna.Framework.Media;
 
 namespace juliasfinal
 {
 	class MainGame : Game
 	{
 		private readonly GraphicsDeviceManager graphics;
+
 		private SpriteBatch spriteBatch;
 
 		private readonly Snake snake;
@@ -24,6 +26,10 @@ namespace juliasfinal
 		private int score;
 		private bool drawGrid;
 		//Deklarerat 
+
+		
+			
+		
 		public MainGame()
 		{
 			graphics = new GraphicsDeviceManager(this);

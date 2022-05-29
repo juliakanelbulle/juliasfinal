@@ -43,7 +43,7 @@ namespace juliasfinal.GameObjects
 			Styra.Left => Tail.Count == 1 || (Tail.Count > 1 && this.direction.X != 1),
 			Styra.Right => Tail.Count == 1 || (Tail.Count > 1 && this.direction.X != -1),
 			_ => false
-		}; //här anger jag hur min svans ska röra på sig
+		}; //här anger jag hur min svans ska röra på sig beroende på tangenterna
 
 		public void ResetSnake()
 		{
