@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/Iulia/Desktop/juliasfinal/Content/ScoreFont.spritefont</SourceFile>
+  <SourceFile>c:/Users/Iulia/Desktop/juliasfinal/Content/ScoreFont.spritefont</SourceFile>
   <SourceTime>2018-12-08T17:35:46+01:00</SourceTime>
-  <DestFile>C:/Users/Iulia/Desktop/juliasfinal/Content/bin/Windows/Content/ScoreFont.xnb</DestFile>
-  <DestTime>2022-05-29T02:11:41.9461002+02:00</DestTime>
+  <DestFile>c:/Users/Iulia/Desktop/juliasfinal/Content/bin/Windows/Content/ScoreFont.xnb</DestFile>
+  <DestTime>2022-05-29T02:13:09.6655088+02:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2020-08-10T18:17:54+02:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

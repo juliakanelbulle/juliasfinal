@@ -27,9 +27,6 @@ namespace juliasfinal
 		private bool drawGrid;
 		//Deklarerat 
 
-		
-			
-		
 		public MainGame()
 		{
 			graphics = new GraphicsDeviceManager(this);

@@ -4,8 +4,8 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Iulia/Desktop/juliasfinal/Content/GameOverFont.spritefont</File>
-    <File>C:/Users/Iulia/Desktop/juliasfinal/Content/ScoreFont.spritefont</File>
+    <File>c:/Users/Iulia/Desktop/juliasfinal/Content/GameOverFont.spritefont</File>
+    <File>c:/Users/Iulia/Desktop/juliasfinal/Content/ScoreFont.spritefont</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
