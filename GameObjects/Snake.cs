@@ -26,7 +26,7 @@ namespace juliasfinal.GameObjects
 		public Texture2D Texture { get; set; }
 
 		public Snake() => Tail = new List<Rectangle>
-		//symbolen "=>" kallas för en lambda-operator och den separear input-parametrarna från vännstar sidan om tecknet från det på den högra sidan!
+		//symbolen "=>" kallas för en lambda-operator och den separear input-parametrarna från den vänstra sidan om tecknet från det på den högra sidan!
 		//ex; (input-parameter) => uttryck
 		//lambda operatorn används för att enklare deklarera "delgeates" utan att skriva ut en hel metod
 		//delegate är en klass som bär på referenser till metoder med samma typ av parampetrar och reyrun-types 
