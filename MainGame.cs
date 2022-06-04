@@ -36,6 +36,7 @@ namespace juliasfinal
 			graphics.PreferredBackBufferWidth = Constants.WINDOW_SIZE;
 
 			IsMouseVisible = true;
+			//musen ska vara synlig innuti spelrutan
 
 			snake = new Snake();
 			kub = new Kub();
@@ -45,7 +46,7 @@ namespace juliasfinal
 		{
 			snake.SetStartingPosition();
 			kub.ResetToRandomPosition(snake.Tail);
-
+			//sätter ormen och kuben på random position
 			base.Initialize();
 		}
 
@@ -80,17 +81,17 @@ namespace juliasfinal
 			if (Tangentbord.IsKeyPress(Keys.Escape))
 			{
 				Exit();
-				return;
+				return; //om spelare klickar esc ska man lämna spelet
 			}
 
 			if (!started && Tangentbord.IsKeyPress(Keys.Space))
 			{
-				started = true;
+				started = true; //spelet startar vid mellanslag
 			}
 
 			if (Tangentbord.IsKeyPress(Keys.G))
 			{
-				drawGrid = !drawGrid;
+				drawGrid = !drawGrid; //rita ut
 			}
 
 			snake.Update(gameTime);
@@ -107,7 +108,7 @@ namespace juliasfinal
 			{
 				kub.ResetToRandomPosition(snake.Tail);
 				snake.ExtendTail();
-				score++;
+				score++; //för varje kub infångad ska score gå upp med +1
 			}
 
 			base.Update(gameTime);
@@ -126,7 +127,7 @@ namespace juliasfinal
 
 				spriteBatch.DrawString(scoreFont, $"Current Score: {score}", new Vector2(10, 10), Color.Pink);
 				spriteBatch.DrawString(scoreFont, $"Highscore: {hiscore.PersonalBest}", new Vector2(10, 26), Color.Pink);
-
+				
 				if (!snake.IsAlive)
 				{
 					spriteBatch.DrawCenteredString(gameOverFont, $"Game over\nPress Speace to restart.", Color.Pink);

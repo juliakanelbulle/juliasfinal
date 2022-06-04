@@ -50,6 +50,6 @@ namespace juliasfinal.GameObjects
 		public void Draw(SpriteBatch spriteBatch)
 		{
 			spriteBatch.Draw(Texture, new Rectangle(Position.X, Position.Y, Size, Size), Color.LightCoral);
-		}//ritar ut
+		}
 	}
 }

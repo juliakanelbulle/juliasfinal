@@ -1,6 +1,8 @@
 using System;
 using System.IO;
 using System.Text.Json;
+//json använder jag för den är enklast och kortare än XML 
+
 
 //Detta är min klass där highscore och nuvarande poäng personer har som spelar programeras
 namespace juliasfinal.Verktyg.Saves
@@ -15,7 +17,9 @@ namespace juliasfinal.Verktyg.Saves
 			}
 
 			try
-			{
+			{	//"var" är en datatyp som deklarear en imlicit typ av variabel..
+			   //...som specifiserar typen av variabeln baserat på dess initalvärde
+			   //ex; var a = 20; en implicit
 				var json = File.ReadAllText(Constants.SAVE_FILE);
 				return JsonSerializer.Deserialize<Hiscore>(json);
 			}

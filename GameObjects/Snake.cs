@@ -20,12 +20,20 @@ namespace juliasfinal.GameObjects
 		private bool gridMode = true;
 
 		public int Size => Constants.RECT_SIZE;
-
+		//denna metoden används för att få nummerna av element i listan av Arraylistan
 		public bool IsAlive { get; set; } = true;
 	
 		public Texture2D Texture { get; set; }
 
 		public Snake() => Tail = new List<Rectangle>
+		//symbolen "=>" kallas för en lambda-operator och den separear input-parametrarna från vännstar sidan om tecknet från det på den högra sidan!
+		//ex; (input-parameter) => uttryck
+		//lambda operatorn används för att enklare deklarera "delgeates" utan att skriva ut en hel metod
+		//delegate är en klass som bär på referenser till metoder med samma typ av parampetrar och reyrun-types 
+		//operatorn "=>" kan inte bli överbelastad
+		//lambda operatorn är ett kortare och mer effektivt sätt att representera anonyma metoder...
+		//... eftersom jag inte behöver specificera typen av input :)
+		
 		{
 			new Rectangle(position.X, position.Y, Size, Size)
 		};
@@ -33,6 +41,7 @@ namespace juliasfinal.GameObjects
 		public void SetupTexture(GraphicsDevice graphics)
 		{
 			Texture = new Texture2D(graphics, 1, 1);
+			//skapat en texture2D konstruktor
 			Texture.SetData(new[] { Color.White });
 		}
 
